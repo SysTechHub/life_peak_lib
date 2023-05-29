@@ -21,7 +21,25 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: ${processTestStruct()}'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () {
+                  processTestStruct();
+                },
+                child: const Text('processTestStruct'),
+              ),
+              const SizedBox(height: 20),
+              TextButton(
+                onPressed: () {
+                  processTestArray();
+                },
+                child: const Text('processTestArray'),
+              ),
+            ],
+          ),
         ),
       ),
     );
