@@ -22,5 +22,5 @@ struct TestStruct
     }
 };
 
-extern "C"  TestStruct processTestStruct(TestStruct inp);
-extern "C"  TestStruct* processTestArray(TestStruct inp[]);
+TestStruct processTestStruct(TestStruct inp);
+TestStruct* processTestArray(TestStruct inp[]);

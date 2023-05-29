@@ -4,6 +4,52 @@
 // ignore_for_file: type=lint
 import 'dart:ffi' as ffi;
 
+/// LifePeakLib from SysTech
+class LifePeakLib {
+  /// Holds the symbol lookup function.
+  final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
+      _lookup;
+
+  /// The symbols are looked up in [dynamicLibrary].
+  LifePeakLib(ffi.DynamicLibrary dynamicLibrary)
+      : _lookup = dynamicLibrary.lookup;
+
+  /// The symbols are looked up with [lookup].
+  LifePeakLib.fromLookup(
+      ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
+          lookup)
+      : _lookup = lookup;
+
+  TestStruct processTestStruct(
+    TestStruct inp,
+  ) {
+    return _processTestStruct(
+      inp,
+    );
+  }
+
+  late final _processTestStructPtr =
+      _lookup<ffi.NativeFunction<TestStruct Function(TestStruct)>>(
+          'processTestStruct');
+  late final _processTestStruct =
+      _processTestStructPtr.asFunction<TestStruct Function(TestStruct)>();
+
+  ffi.Pointer<TestStruct> processTestArray(
+    ffi.Pointer<TestStruct> inp,
+  ) {
+    return _processTestArray(
+      inp,
+    );
+  }
+
+  late final _processTestArrayPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<TestStruct> Function(
+              ffi.Pointer<TestStruct>)>>('processTestArray');
+  late final _processTestArray = _processTestArrayPtr
+      .asFunction<ffi.Pointer<TestStruct> Function(ffi.Pointer<TestStruct>)>();
+}
+
 class TestStruct extends ffi.Struct {
   @ffi.Int()
   external int testBoolean;

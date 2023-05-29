@@ -13,6 +13,6 @@ typedef TestStructFunctionDart = Pointer<TestStruct> Function();
 final processTestStruct = nativeLifePeakLib
     .lookupFunction<TestStructFunction, TestStructFunctionDart>('processTestStruct');
 
-void main() {
-  print('processTestStruct= ${nativeLifePeakLib.providesSymbol('processTestStruct')}');
-}
+// void main() {
+//   print('processTestStruct= ${nativeLifePeakLib.providesSymbol('processTestStruct')}');
+// }
