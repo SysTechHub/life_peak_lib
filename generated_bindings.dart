@@ -20,51 +20,18 @@ class LifePeakLib {
           lookup)
       : _lookup = lookup;
 
-  TestStruct processTestStruct(
-    TestStruct inp,
+  /// Adds 2 integers.
+  int sum(
+    int a,
+    int b,
   ) {
-    return _processTestStruct(
-      inp,
+    return _sum(
+      a,
+      b,
     );
   }
 
-  late final _processTestStructPtr =
-      _lookup<ffi.NativeFunction<TestStruct Function(TestStruct)>>(
-          'processTestStruct');
-  late final _processTestStruct =
-      _processTestStructPtr.asFunction<TestStruct Function(TestStruct)>();
-
-  ffi.Pointer<TestStruct> processTestArray(
-    ffi.Pointer<TestStruct> inp,
-  ) {
-    return _processTestArray(
-      inp,
-    );
-  }
-
-  late final _processTestArrayPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<TestStruct> Function(
-              ffi.Pointer<TestStruct>)>>('processTestArray');
-  late final _processTestArray = _processTestArrayPtr
-      .asFunction<ffi.Pointer<TestStruct> Function(ffi.Pointer<TestStruct>)>();
-}
-
-class TestStruct extends ffi.Struct {
-  @ffi.Int()
-  external int testBoolean;
-
-  @ffi.Int()
-  external int testInt;
-
-  @ffi.Float()
-  external double testFloat;
-
-  @ffi.Double()
-  external double testDouble;
-
-  external ffi.Pointer<ffi.Char> testStr;
-
-  @ffi.Int()
-  external int operator1;
+  late final _sumPtr =
+      _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>('sum');
+  late final _sum = _sumPtr.asFunction<int Function(int, int)>();
 }

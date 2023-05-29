@@ -10,4 +10,4 @@ add_library(life_peak_lib
 SHARED
 
 # Provides a relative path to your source file(s).
-        src/main/cpp/life_peak_lib.cpp)
+        src/main/cpp/life_peak_lib.c)

@@ -27,16 +27,10 @@ class _MyAppState extends State<MyApp> {
             children: [
               TextButton(
                 onPressed: () {
-                  processTestStruct();
+                  sum(40, 2);
+                  debugPrint('sum= ${sum(40, 2)}');
                 },
-                child: const Text('processTestStruct'),
-              ),
-              const SizedBox(height: 20),
-              TextButton(
-                onPressed: () {
-                  processTestArray();
-                },
-                child: const Text('processTestArray'),
+                child: const Text('sum'),
               ),
             ],
           ),

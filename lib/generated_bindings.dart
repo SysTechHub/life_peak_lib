@@ -8,7 +8,7 @@ import 'dart:ffi' as ffi;
 class LifePeakLib {
   /// Holds the symbol lookup function.
   final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
-      _lookup;
+  _lookup;
 
   /// The symbols are looked up in [dynamicLibrary].
   LifePeakLib(ffi.DynamicLibrary dynamicLibrary)
@@ -17,54 +17,21 @@ class LifePeakLib {
   /// The symbols are looked up with [lookup].
   LifePeakLib.fromLookup(
       ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
-          lookup)
+      lookup)
       : _lookup = lookup;
 
-  TestStruct processTestStruct(
-    TestStruct inp,
-  ) {
-    return _processTestStruct(
-      inp,
+  /// Adds 2 integers.
+  int sum(
+      int a,
+      int b,
+      ) {
+    return _sum(
+      a,
+      b,
     );
   }
 
-  late final _processTestStructPtr =
-      _lookup<ffi.NativeFunction<TestStruct Function(TestStruct)>>(
-          'processTestStruct');
-  late final _processTestStruct =
-      _processTestStructPtr.asFunction<TestStruct Function(TestStruct)>();
-
-  ffi.Pointer<TestStruct> processTestArray(
-    ffi.Pointer<TestStruct> inp,
-  ) {
-    return _processTestArray(
-      inp,
-    );
-  }
-
-  late final _processTestArrayPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<TestStruct> Function(
-              ffi.Pointer<TestStruct>)>>('processTestArray');
-  late final _processTestArray = _processTestArrayPtr
-      .asFunction<ffi.Pointer<TestStruct> Function(ffi.Pointer<TestStruct>)>();
-}
-
-class TestStruct extends ffi.Struct {
-  @ffi.Int()
-  external int testBoolean;
-
-  @ffi.Int()
-  external int testInt;
-
-  @ffi.Float()
-  external double testFloat;
-
-  @ffi.Double()
-  external double testDouble;
-
-  external ffi.Pointer<ffi.Char> testStr;
-
-  @ffi.Int()
-  external int operator1;
+  late final _sumPtr =
+  _lookup<ffi.NativeFunction<ffi.Int Function(ffi.Int, ffi.Int)>>('sum');
+  late final _sum = _sumPtr.asFunction<int Function(int, int)>();
 }
