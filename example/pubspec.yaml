@@ -17,6 +17,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  typed_data:
+  cbor:
+  flutter_bloc:
+  equatable:
+  flutter_blue_plus:
   life_peak_lib:
     # When depending on this package from a real application you should use:
     #   life_peak_lib: ^x.y.z
